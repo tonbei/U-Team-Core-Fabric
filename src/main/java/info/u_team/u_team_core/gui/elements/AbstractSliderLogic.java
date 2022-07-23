@@ -4,7 +4,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.Mth;
 
-public abstract sealed class AbstractSliderLogic extends UButton permits USlider {
+public abstract class AbstractSliderLogic extends UButton {
 	
 	protected static final OnSliderChange EMPTY_SLIDER = slider -> {
 	};

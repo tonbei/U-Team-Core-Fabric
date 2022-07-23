@@ -15,7 +15,7 @@ buildscript {
 		mavenCentral()
 	}
 	dependencies {
-		classpath group: "fabric-loom", name: "fabric-loom.gradle.plugin", version: "0.12-SNAPSHOT", changing: true
+		classpath group: "fabric-loom", name: "fabric-loom.gradle.plugin", version: "0.10-SNAPSHOT", changing: true
 		classpath group: "info.u-team.gradle_files", name: "gradle_files", version: "1.1.1"
 		classpath group: "info.u-team.curse_gradle_uploader", name: "curse_gradle_uploader", version: "1.5.0"
 	}
@@ -38,7 +38,7 @@ gradlefiles {
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
+		languageVersion = JavaLanguageVersion.of(16)
 	}
 	withDeobfJar()
 	withSourcesJar()
@@ -55,7 +55,21 @@ tasks.withType(Jar) { task ->
 
 tasks.withType(Javadoc) { task ->
 	task.options.addStringOption("Xdoclint:none", "-quiet")
+
+	failOnError false
+	//task.options.addStringOption("source", "16")
+	//task.options.addBooleanOption("-enable-preview", true)
 }
+
+//tasks.withType(JavaCompile) {
+//	options.compilerArgs += "--enable-preview"
+//}
+//tasks.withType(Test) {
+//	jvmArgs += "--enable-preview"
+//}
+//tasks.withType(JavaExec) {
+//	jvmArgs += "--enable-preview"
+//}
 
 sourceSets {
 	main {
@@ -92,7 +106,7 @@ curseforge {
 		
 		addGameVersion config.minecraft.version
 		addGameVersion "Fabric"
-		addGameVersion "Java 17"
+		addGameVersion "Java 16"
 		
 		mainArtifact(tasks.getByName("remapJar")) {
 			displayName = "${config.curse.display}-${config.minecraft.version}-${project.version}"

@@ -14,7 +14,7 @@ import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 
-public non-sealed class USlider extends AbstractSliderLogic implements PerspectiveRenderable, BackgroundColorProvider, TextProvider {
+public class USlider extends AbstractSliderLogic implements PerspectiveRenderable, BackgroundColorProvider, TextProvider {
 	
 	protected static final OnSliderChange EMPTY_SLIDER = AbstractSliderLogic.EMPTY_SLIDER;
 	
@@ -146,7 +146,7 @@ public non-sealed class USlider extends AbstractSliderLogic implements Perspecti
 	
 	@Override
 	public void onRelease(double mouseX, double mouseY) {
-		if (isHoveredOrFocused()) {
+		if (isHovered()) {
 			super.playDownSound(Minecraft.getInstance().getSoundManager());
 		}
 		if (isInContainer) {
